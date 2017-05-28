@@ -33,20 +33,20 @@ public class DbBackend extends DbObject {
         return kamusKosakata;
     }
 
-    public QuizObject getQuizById(int quizId){
-        QuizObject quizObject = null;
-        String query = "select * from kamus where _id = " + quizId;
+    public KamusObject getKamusById(int kamusId){
+        KamusObject kamusObject = null;
+        String query = "select * from kamus where _id = " + kamusId;
         Cursor cursor = this.getDbConnection().rawQuery(query, null);
         if(cursor.moveToFirst()){
             do{
                 String kata = cursor.getString(cursor.getColumnIndexOrThrow("kata"));
                 String arti = cursor.getString(cursor.getColumnIndexOrThrow("arti"));
-                quizObject = new QuizObject(kata, arti);
+                kamusObject = new KamusObject(kata, arti);
             }while (cursor.moveToNext());
         }
 
         cursor.close();
-        return quizObject;
+        return kamusObject;
     }
 
 }

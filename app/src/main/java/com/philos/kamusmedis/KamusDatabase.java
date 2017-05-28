@@ -9,7 +9,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
  */
 
 public class KamusDatabase extends SQLiteAssetHelper {
-    private static final String DATABASE_NAMES = "quiz";
+    private static final String DATABASE_NAMES = "kamus";
     private static final int DATABASE_VERSION = 1;
     public KamusDatabase( Context context) {
         super(context, DATABASE_NAMES, null, DATABASE_VERSION);
