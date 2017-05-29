@@ -33,9 +33,9 @@ public class DbBackend extends DbObject {
         return kamusKosakata;
     }
 
-    public KamusObject getKamusById(int kamusId){
+    public KamusObject getKamusByKata(String kamusKata){
         KamusObject kamusObject = null;
-        String query = "select * from kamus where _id = " + kamusId;
+        String query = "select * from kamus where kata = '" + kamusKata +"'";
         Cursor cursor = this.getDbConnection().rawQuery(query, null);
         if(cursor.moveToFirst()){
             do{

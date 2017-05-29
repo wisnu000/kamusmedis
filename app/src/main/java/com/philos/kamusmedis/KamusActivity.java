@@ -15,7 +15,7 @@ import android.widget.TextView;
 import java.util.Locale;
 
 public class KamusActivity extends AppCompatActivity {
-
+    String terms;
     private TextView artiKata;
     private TextToSpeech convertToSpeech;
 
@@ -24,20 +24,15 @@ public class KamusActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kamus);
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        int kamusId = bundle.getInt("KAMUS_ID");
-        int id = kamusId + 1;
-
         TextView kata = (TextView)findViewById(R.id.kata);
         artiKata = (TextView)findViewById(R.id.kamus);
         Button textToSpeech = (Button)findViewById(R.id.button);
 
-        DbBackend dbBackend = new DbBackend(KamusActivity.this);
-        KamusObject allKamusQuestions = dbBackend.getKamusById(id);
+        Intent intent = getIntent();
+        terms = intent.getStringExtra("KAMUS_KATA");
 
-        kata.setText(allKamusQuestions.getKata());
-        artiKata.setText(allKamusQuestions.getDefinisi());
+        kata.setText(terms);
+        setArtiKata(terms);
 
         textToSpeech.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +50,12 @@ public class KamusActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    public void setArtiKata(String ar){
+        DbBackend dbBackend = new DbBackend(KamusActivity.this);
+        KamusObject allKamusQuestions = dbBackend.getKamusByKata(terms);
+            artiKata.setText(allKamusQuestions.getDefinisi());
     }
 
     @Override

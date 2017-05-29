@@ -25,18 +25,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         filterText = (EditText) findViewById(R.id.editText);
-        ListView itemList = (ListView) findViewById(R.id.listView);
+        final ListView itemList = (ListView) findViewById(R.id.listView);
         DbBackend dbBackend = new DbBackend(MainActivity.this);
         String[] terms = dbBackend.kamusKosakata();
+
         listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, terms);
+
         itemList.setAdapter(listAdapter);
         itemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // make Toast when click
-                Toast.makeText(getApplicationContext(), "Position " + position, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, KamusActivity.class);
-                intent.putExtra("DICTIONARY_ID", position);
+
+                String terms = itemList.getItemAtPosition(position).toString();
+                Toast.makeText(getApplicationContext(), terms, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), KamusActivity.class);
+                intent.putExtra("KAMUS_KATA", terms);
                 startActivity(intent);
             }
         });
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 MainActivity.this.listAdapter.getFilter().filter(s);
+                MainActivity.this.listAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -59,18 +63,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-// Handle action bar item clicks here. The action bar will
-// automatically handle clicks on the Home/Up button, so long
-// as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-//noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
