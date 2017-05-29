@@ -1,41 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.philos.kamusmedis.MainActivity">
+    tools:context=".MainActivity">
 
     <EditText
-
-        android:layout_width="0dp"
-
-        android:layout_height="wrap_content"
-
         android:id="@+id/editText"
-
-        android:layout_alignParentTop="true"
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-
         android:layout_alignParentStart="true"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="28dp" />
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="cari istilah medis"
+        tools:ignore="HardcodedText,TextFields" />
 
     <ListView
-
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
-
         android:id="@+id/listView"
-
-        android:layout_below="@+id/editText"
-
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText"
-
         android:layout_alignStart="@+id/editText"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_below="@+id/editText"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        tools:ignore="RtlHardcoded" />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editText"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Daftar Istilah Medis"
+        android:textSize="18sp"
+        tools:ignore="HardcodedText" />
+
+</RelativeLayout>
+
