@@ -22,6 +22,7 @@ public class KamusActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_kamus);
 
         TextView kata = (TextView)findViewById(R.id.kata);
@@ -43,7 +44,7 @@ public class KamusActivity extends AppCompatActivity {
                     @Override
                     public void onInit(int status) {
                         if(status != TextToSpeech.ERROR){
-                            convertToSpeech.setLanguage(Locale.US);
+                            convertToSpeech.setLanguage(new Locale("id","ID"));
                             convertToSpeech.speak(convertTextToSpeech, TextToSpeech.QUEUE_FLUSH, null, null);
                         }
                     }
