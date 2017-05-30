@@ -71,9 +71,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_about:
+                Intent intent = new Intent(this, AboutActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_settings:
+                Toast.makeText(getApplicationContext(), "tidak ada pengaturan tersedia!!!", Toast.LENGTH_LONG).show();
         }
         return super.onOptionsItemSelected(item);
     }
